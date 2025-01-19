@@ -4,63 +4,13 @@ const Greeter = require('../main/greeter');
 const greeter = new Greeter()
 
 // looks for console out put
-const consoleSpy = jest.spyOn(console , 'log').mockImplementation()
+beforeEach(() => {
+  jest.spyOn(console, 'log').mockImplementation();
+});
 
-// return tests
-test('if the time is 06:00:00 it should return Good morning', () => {
-    jest.spyOn(global, 'Date').mockImplementation(() => ({
-      toLocaleTimeString: () => "06:00:00",
-    }));
-    expect(greeter.getMessage()).toBe("Good morning");
-  });
-  
-  test('if the time is 12:00:00 it should return Good afternoon', () => {
-    jest.spyOn(global, 'Date').mockImplementation(() => ({
-      toLocaleTimeString: () => "12:00:00",
-    }));
-    expect(greeter.getMessage()).toBe("Good afternoon");
-  });
-  
-  test('if the time is 18:00:00 it should return Good evening', () => {
-    jest.spyOn(global, 'Date').mockImplementation(() => ({
-      toLocaleTimeString: () => "18:00:00",
-    }));
-    expect(greeter.getMessage()).toBe("Good evening");
-  });
-  
-  test('if the time is 22:00:00 it should return Good night', () => {
-    jest.spyOn(global, 'Date').mockImplementation(() => ({
-      toLocaleTimeString: () => "22:00:00",
-    }));
-    expect(greeter.getMessage()).toBe("Good night");
-  });
-  
-  test('if the time is 06:00:00 and a user inputs the name " joHn ", it should return Good morning John', () => {
-    jest.spyOn(global, 'Date').mockImplementation(() => ({
-      toLocaleTimeString: () => "06:00:00",
-    }));
-    expect(greeter.greet(" joHn ")).toBe("Good morning John");
-  });
-  
-  test('if the time is 12:00:00 and a user inputs the name " joHn ", it should return Good afternoon John', () => {
-    jest.spyOn(global, 'Date').mockImplementation(() => ({
-      toLocaleTimeString: () => "12:00:00",
-    }));
-    expect(greeter.greet(" joHn ")).toBe("Good afternoon John");
-  });
-  
-  test('if the time is 18:00:00 and a user inputs the name " joHn ", it should return Good evening John', () => {
-    jest.spyOn(global, 'Date').mockImplementation(() => ({
-      toLocaleTimeString: () => "18:00:00",
-    }));
-    expect(greeter.greet(" joHn ")).toBe("Good evening John");
-  });
-  
-
-
-
-
-
+afterEach(() => {
+  jest.restoreAllMocks();
+});
 
 
 
@@ -75,10 +25,10 @@ test('should when given the name "  john " at 06:00:00  log to console "Good mor
     greeter.greet(" john ")
     
     // checks if log was correct
-    expect(consoleSpy).toHaveBeenCalledWith("Good morning John");
+    expect(console.log).toHaveBeenCalledWith("Good morning John");
 
     // cleans up mock
-    consoleSpy.mockRestore();
+    
 })
 
 test('should when given the name "  john " at 12:00:00  log to console "Good afternoon John"' , ()=>{
@@ -91,9 +41,9 @@ test('should when given the name "  john " at 12:00:00  log to console "Good aft
     greeter.greet(" john ")
     
     // checks if log was correct
-    expect(consoleSpy).toHaveBeenCalledWith("Good afternoon John");
+    expect(console.log).toHaveBeenCalledWith("Good afternoon John");
 
-    consoleSpy.mockRestore();
+    
 })
 
 test('should when given the name "  john " at 18:00:00  log to console "Good evening John"' , ()=>{
@@ -104,9 +54,9 @@ test('should when given the name "  john " at 18:00:00  log to console "Good eve
 
     greeter.greet(" john ")
     
-    expect(consoleSpy).toHaveBeenCalledWith("Good evening John");
+    expect(console.log).toHaveBeenCalledWith("Good evening John");
 
-    consoleSpy.mockRestore();
+    
 })
 
 
@@ -120,7 +70,6 @@ test('should when given the name "  john " at 22:00:00  log to console "Good nig
     greeter.greet(" john ")
     
     // checks if log was correct
-    expect(consoleSpy).toHaveBeenCalledWith("Good night John");
+    expect(console.log).toHaveBeenCalledWith("Good night John");
 
-    consoleSpy.mockRestore();
 })

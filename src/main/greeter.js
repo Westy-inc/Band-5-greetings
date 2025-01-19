@@ -1,12 +1,22 @@
 class Greeter {
     constructor (){}
 
+    greet(name){
+        const nameTrimmed = this.trimmer(name)
+        const nameFinal = this.capitalizer(nameTrimmed)
+        const Message =  this.getMessages()
+        const greeting = `${Message} ${nameFinal}`
+        return console.log(greeting)
+    }
+
+
+
     trimmer(name){
         return name.trim()
     }
 
     capitalizer(name){
-        return name[0].toUpperCase() + name.substring(1)
+        return name[0].toUpperCase() + name.substring(1).toLowerCase()
     }
 
     getCurrentTime(){
@@ -41,5 +51,9 @@ class Greeter {
          
        }
 }
+
+const greeter = new Greeter
+
+greeter.greet("joHn")
 
 module.exports = Greeter
