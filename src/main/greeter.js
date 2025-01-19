@@ -1,4 +1,5 @@
-export class Greeter {
+class Greeter {
     constructor (){}
 }
 
+module.exports = Greeter
