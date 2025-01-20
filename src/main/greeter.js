@@ -1,5 +1,15 @@
+const readline = require('node:readline');
 class Greeter {
     constructor (){}
+
+
+    inputUser(){
+    const { stdin: input, stdout: output } = require('node:process');
+    const rl = readline.createInterface({input, output})
+    rl.question('what is your name friend? ', (answer)=>{
+        this.inputValidator(answer , rl)
+        rl.close();
+    })}
 
     greet(name){
         const nameTrimmed = this.trimmer(name)
@@ -9,7 +19,26 @@ class Greeter {
         return console.log(greeting)
     }
 
+    inputValidator(name , rl){
+        const nameTrim = this.trimmer(name)
+        if (nameTrim === "") {
+            console.log("Oops you forgot to enter anything");
+            rl.close()
+            this.inputUser();
+        } else if (nameTrim.length < 2) {
+            console.log("That's too short of a name");
+            rl.close()
+            this.inputUser();
+        } else if (/\d/.test(nameTrim)) { // Check for numbers
+            console.log("Your name cannot contain numbers.");
+            rl.close()
+            this.inputUser();
+        } else {
+            rl.close()
+            this.greet(name)
+        }
 
+    }
 
     trimmer(name){
         return name.trim()
@@ -54,6 +83,6 @@ class Greeter {
 
 const greeter = new Greeter
 
-greeter.greet("joHn")
+greeter.inputUser()
 
 module.exports = Greeter

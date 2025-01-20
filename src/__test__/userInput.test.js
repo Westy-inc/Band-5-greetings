@@ -22,10 +22,10 @@ describe('Greeter Class - inputValidator', () => {
         greetSpy.mockRestore();
     });
 
-    // ... other tests
+
 
     it('should not allow number input and re-prompt', () => {
-        greeter.inputValidator("1231", mockRl); // Pass mockRl
+        greeter.inputValidator("1231", mockRl); 
         expect(consoleLogSpy).toHaveBeenCalledWith("Your name cannot contain numbers.");
         expect(mockRl.close).toHaveBeenCalled();
         expect(inputUserSpy).toHaveBeenCalled(); // Check that inputUser is called
@@ -35,7 +35,7 @@ describe('Greeter Class - inputValidator', () => {
         greeter.inputValidator("test1234", mockRl); // Pass mockRl
         expect(consoleLogSpy).toHaveBeenCalledWith("Your name cannot contain numbers.");
         expect(mockRl.close).toHaveBeenCalled();
-        expect(inputUserSpy).toHaveBeenCalled(); // Check that inputUser is called
+        expect(inputUserSpy).toHaveBeenCalled();
     });
 
     it('should handle input with only spaces and re-prompt', () => {
@@ -48,6 +48,6 @@ describe('Greeter Class - inputValidator', () => {
         greeter.inputValidator('Test Name', mockRl);
         expect(greetSpy).toHaveBeenCalledWith('Test Name');
         expect(mockRl.close).toHaveBeenCalled();
-        expect(inputUserSpy).not.toHaveBeenCalled();//make sure input user is not called
+        expect(inputUserSpy).not.toHaveBeenCalled();
     });
 });

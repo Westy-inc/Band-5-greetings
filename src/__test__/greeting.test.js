@@ -14,7 +14,6 @@ afterEach(() => {
 
 
 
-// logging tests
 test('should when given the name "  john " at 06:00:00  log to console "Good morning John"' , ()=>{
     //mock time 
     jest.spyOn(global ,'Date').mockImplementation(() => ({ 
@@ -27,7 +26,6 @@ test('should when given the name "  john " at 06:00:00  log to console "Good mor
     // checks if log was correct
     expect(console.log).toHaveBeenCalledWith("Good morning John");
 
-    // cleans up mock
     
 })
 
